@@ -36,7 +36,6 @@ export interface Dish {
   dish_description: string
   dish_Availability: boolean
   dish_Type: number
-  addonCat?: any[]
 }
 
 export interface Category {
