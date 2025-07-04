@@ -88,40 +88,38 @@ const ProductCard: React.FC<ProductCardProps> = ({ dish }) => {
             {dish?.dish_description}
           </p>
 
-          <div className="flex items-center justify-between">
-            {dish?.dish_Availability ? (
-              <div className="flex items-center bg-green-600 rounded-full px-4 py-2 min-w-[120px]">
-                <button
-                  onClick={handleRemoveItem}
-                  disabled={quantity === 0}
-                  className="text-white text-lg font-bold w-6 h-6 flex items-center justify-center disabled:opacity-50"
-                  aria-label="Remove item"
-                >
-                  −
-                </button>
-                <span className="text-white font-medium mx-4 min-w-[1.5rem] text-center">
-                  {quantity}
-                </span>
-                <button
-                  onClick={handleAddItem}
-                  className="text-white text-lg font-bold w-6 h-6 flex items-center justify-center"
-                  aria-label="Add item"
-                >
-                  +
-                </button>
-              </div>
-            ) : (
-              <span className="text-red-500 text-sm font-medium">
-                Not available
+          {dish?.dish_Availability ? (
+            <div className="flex justify-between items-center rounded-2xl h-10 w-35 bg-green-700 text-white my-2 px-2">
+              <button
+                onClick={handleRemoveItem}
+                className="w-8 h-8 cursor-pointer text-white flex items-center justify-center transition-colors text-lg font-bold"
+                aria-label="Remove item"
+              >
+                -
+              </button>
+              <span className="min-w-[2rem] text-center font-medium text-lg">
+                {quantity}
               </span>
-            )}
+              <button
+                onClick={handleAddItem}
+                disabled={!dish?.dish_Availability}
+                className="w-8 h-8 text-white flex items-center cursor-pointer justify-center transition-colors disabled:cursor-not-allowed text-lg font-bold"
+                aria-label="Add item"
+              >
+                +
+              </button>
+            </div>
+          ) : (
+            <span className="text-red-500 text-sm font-medium">
+              Not available
+            </span>
+          )}
 
-            {hasCustomizations && (
-              <span className="text-red-500 text-sm font-medium">
-                Customizations Available
-              </span>
-            )}
-          </div>
+          {hasCustomizations && (
+            <div className="text-red-500 text-sm font-medium">
+              Customizations Available
+            </div>
+          )}
         </div>
       </div>
 
@@ -137,31 +135,33 @@ const ProductCard: React.FC<ProductCardProps> = ({ dish }) => {
               {dish?.dish_description}
             </p>
             {dish?.dish_Availability ? (
-              <div className="flex justify-between items-center rounded-2xl h-10 w-35 bg-green-700 text-white my-2 px-2">
-                <button
-                  onClick={handleRemoveItem}
-                  className="w-8 h-8 cursor-pointer text-white flex items-center justify-center transition-colors text-lg font-bold"
-                  aria-label="Remove item"
-                >
-                  -
-                </button>
-                <span className="min-w-[2rem] text-center font-medium text-lg">
-                  {quantity}
-                </span>
-                <button
-                  onClick={handleAddItem}
-                  disabled={!dish?.dish_Availability}
-                  className="w-8 h-8 text-white flex items-center cursor-pointer justify-center transition-colors disabled:cursor-not-allowed text-lg font-bold"
-                  aria-label="Add item"
-                >
-                  +
-                </button>
-              </div>
+              <>
+                <div className="flex justify-between items-center rounded-2xl h-10 w-35 bg-green-700 text-white my-2 px-2">
+                  <button
+                    onClick={handleRemoveItem}
+                    className="w-8 h-8 cursor-pointer text-white flex items-center justify-center transition-colors text-lg font-bold"
+                    aria-label="Remove item"
+                  >
+                    -
+                  </button>
+                  <span className="min-w-[2rem] text-center font-medium text-lg">
+                    {quantity}
+                  </span>
+                  <button
+                    onClick={handleAddItem}
+                    disabled={!dish?.dish_Availability}
+                    className="w-8 h-8 text-white flex items-center cursor-pointer justify-center transition-colors disabled:cursor-not-allowed text-lg font-bold"
+                    aria-label="Add item"
+                  >
+                    +
+                  </button>
+                </div>
+              </>
             ) : (
               <p className="text-red-500">Not available</p>
             )}
             {hasCustomizations && (
-              <p className="text-red-500">Customization available</p>
+              <p className="text-red-500 block">Customization available</p>
             )}
           </div>
         </div>

@@ -24,11 +24,9 @@ async function getMenuData(): Promise<ApiResponse | null> {
     }
 
     const rawResult: RawApiResponse = await response.json()
-    console.log("Raw API response:", rawResult)
 
     if (Array.isArray(rawResult.data) && rawResult.data.length > 0) {
       const actualData = rawResult.data[0]
-      console.log("Parsed API response (first element):", actualData)
 
       return actualData as ApiResponse
     } else {
@@ -46,7 +44,6 @@ async function getMenuData(): Promise<ApiResponse | null> {
 
 export default async function Home() {
   const data = await getMenuData()
-  console.log("Fetched data in Home component:", data)
 
   if (!data) {
     return (
